@@ -19,7 +19,7 @@ def main():
     #dt = 0.01
     carray = np.zeros([arraysize])
     delta = np.zeros([arraysize])
-    dtlist = np.linspace(0.001,0.01,arraysize)
+    dtlist = np.linspace(0.001,0.025,arraysize)
     for h in range(0,arraysize):
         
         dt = dtlist[h]
@@ -86,7 +86,7 @@ def main():
         diff = abs(sum(initialBell(x - u*t) - phi)) 
         delta[h] = diff
         carray[h] = c
-        print('Difference between is ', diff,' with c = ',c)
+        print('Difference between is ', diff,' with c = ',c,' and a dt = ',dt)
  
     #plt.show()
 main()

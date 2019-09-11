@@ -11,7 +11,7 @@ def initialBell(x):
 def main():
     # Setup space, initial phi profile and Courant num
     arraysize = 100
-    nxArray = np.linspace(10,100,arraysize)
+    nxArray = np.linspace(10,200,arraysize)
                    #spatial variable going from zero to one inclusive
     
     

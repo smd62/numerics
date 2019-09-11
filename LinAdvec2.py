@@ -10,12 +10,12 @@ def initialBell(x):
 #put everything inside a main function to avoid global variables    
 def main():
     # Setup space, initial phi profile and Courant num
-    arraysize = 10
+    arraysize = 100
     nxArray = np.linspace(10,100,arraysize)
                    #spatial variable going from zero to one inclusive
     
     
-    ntArray = np.linspace(40,1000,arraysize)
+    ntArray = np.linspace(10,1000,arraysize)
       #given time
     t = 10.
     #nx = 40             # number of points in space
@@ -101,6 +101,7 @@ def main():
             
             if c > 1:
                diff = np.nan
+               
                 
             
             delta[xindex,tindex] = diff
@@ -108,17 +109,46 @@ def main():
           #  print('dx = ',dx,' with dt = ',dt)
            # print('Difference between is ', diff,' with c = ',c)
     print('delta = ',delta)
-    print('c = ', carray)
-    print('nx = ',nx)
-    print('nt = ',nt)
+    #print('c = ', carray)
+    #print('nx = ',nxArray)
+    #print('nt = ',ntArray)
     
-    plt.pcolor(delta)
+    print('len(nx) = ', len(nxArray))
+    print('len(nt) = ', len(ntArray))
+    print('len(delta) = ', np.shape(delta))
+
+
+    X, Y = np.meshgrid(nxArray, ntArray)
+    
+    plt.figure()
+    cp = plt.contourf(X, Y, delta, 100,cmap = 'Reds',vmax = 2)
+    cbar = plt.colorbar(cp)
+    cbar.ax.set_ylabel('Difference')
+    plt.xlabel('nx')
+    plt.ylabel('nt')
+    plt.title('Difference between analytical and CTCS')
+    plt.show()
+    
+    
+    
+    
+    plt.figure()
+    cp2 = plt.contourf(X, Y, carray, 100,cmap = 'gist_earth_r')
+    cbar = plt.colorbar(cp2)
+    cbar.ax.set_ylabel('c')
+    plt.xlabel('nx')
+    plt.ylabel('nt')
+    plt.title('Courant Number')
+    plt.show()    
+    
+    
+   # plt.pcolor([nxArray, ntArray],delta)
    # plt.xlabel(
    # tick_spacing = 10
    # plt.yticks(np.arange(0, len(ntArray), tick_spacing), ntArray[0::tick_spacing])
    # plt.xticks(np.arange(0, len(nxArray), tick_spacing), nxArray[0::tick_spacing])   
    
-    plt.show()
+  #  plt.show()
     
     
     #plt.show()
